@@ -1,0 +1,19 @@
+server:
+  port: 40001
+  contextPath: /datacenter
+  
+var:
+  datacenter:
+    esclient:
+      pool:
+        maxIdle: 10
+        maxTotal: 20
+        testOnBorrow: false
+        testOnReturn: false
+        minIdle: 5
+        lifo: false
+        iniNum: 3
+        vipAddress: test-mhis-service.pingan.com.cn
+        port: 80
+        username: 
+        password: 
