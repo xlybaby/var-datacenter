@@ -5,6 +5,10 @@ server:
 var:
   datacenter:
     esclient:
+      api:
+        createIdx:
+          numberOfShards: 3
+          numberOfReplicas: 1
       pool:
         maxIdle: 10
         maxTotal: 20

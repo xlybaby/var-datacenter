@@ -20,6 +20,7 @@ import com.machintosh1983.var.datacenter.research.controller.BaseController;
 import com.machintosh1983.var.datacenter.research.model.User;
 import com.machintosh1983.var.datacenter.research.model.performance.Scenario;
 import com.machintosh1983.var.datacenter.service.index.AbstractESIndexService;
+import com.machintosh1983.var.datacenter.service.task.AbstractUserCustomTaskService;
 
 /**
  * 
@@ -32,18 +33,17 @@ public class SubmitUserCustomTaskController extends BaseController {
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private AbstractESIndexService abstractESIndexService;
+	private AbstractUserCustomTaskService abstractUserCustomTaskService;
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String submit(@RequestBody Scenario scenario, HttpServletRequest request ) throws Exception {
+	public boolean submit(@RequestBody Scenario scenario, HttpServletRequest request ) throws Exception {
 		User user = (User)request.getAttribute(Constant.APPLICATION_REQUEST_ATTR_NAME_USER);
 		if( user == null ) {
 			throw new WebApplicationException(ErrorCode.CODE_9000);
 		}
 		super.printHeaders(request);
-		String result = null;
-		
-		return result;
+		scenario.setUser(user);
+		return abstractUserCustomTaskService.addTask(scenario);
 	}
 	
 	
