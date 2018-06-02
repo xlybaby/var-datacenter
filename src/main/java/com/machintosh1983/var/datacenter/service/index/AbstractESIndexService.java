@@ -3,6 +3,7 @@ package com.machintosh1983.var.datacenter.service.index;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Response;
@@ -36,6 +37,10 @@ public abstract class AbstractESIndexService {
 
 	public abstract boolean generalPut( String idx, String type, String id, Object document ) throws WebApplicationException ;
 	public abstract boolean addScenario( String idx, String type, String id, Scenario scenario ) throws WebApplicationException ;
+
+	public abstract <T> List<T> multiQuery( String idx, String type, String id, List<String> fields, Object qtext, Class<T> clazz ) throws WebApplicationException ;
+	
+	public abstract <T> List<T> multiFilter( String idx, String type, String id, Map<String, Object> filters, Class<T> clazz ) throws WebApplicationException ;
 
 	public String getContext() {
 		return context;

@@ -21,7 +21,7 @@ public class Page {
 	}
 	
 	public Pagination getPagination() {
-		return pagination;
+		return this.pagination;
 	}
 
 	public void setPagination(Pagination pagination) {
@@ -37,7 +37,7 @@ public class Page {
 //	}
 
 	public String getPageId() {
-		return pageId;
+		return this.pageId;
 	}
 
 	public void setPageId(String pageId) {

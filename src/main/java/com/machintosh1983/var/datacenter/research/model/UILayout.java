@@ -1,7 +1,5 @@
 package com.machintosh1983.var.datacenter.research.model;
 
-import java.awt.Color;
-
 public class UILayout {
 
 	private int offsetParentLeft;
@@ -21,13 +19,13 @@ public class UILayout {
 	private int marginBottom;
 	private int marginLeft;
 	
-	private Color backgroundColor = Color.WHITE;
+	private String backgroundColor = "#FFFFFF";
 	private float opacity = 1.0f;
 	
-	private boolean shadow = false;
+	private int shadow;
 	private int border;
-	private Color borderColor = Color.BLACK;
-	private boolean borderRound = false;
+	private String borderColor = "#000000";
+	private int borderRound;
 	
 	public int getOffsetParentLeft() {
 		return offsetParentLeft;
@@ -107,10 +105,10 @@ public class UILayout {
 	public void setMarginLeft(int marginLeft) {
 		this.marginLeft = marginLeft;
 	}
-	public Color getBackgroundColor() {
+	public String getBackgroundColor() {
 		return backgroundColor;
 	}
-	public void setBackgroundColor(Color backgroundColor) {
+	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 	public float getOpacity() {
@@ -119,10 +117,10 @@ public class UILayout {
 	public void setOpacity(float opacity) {
 		this.opacity = opacity;
 	}
-	public boolean isShadow() {
+	public int isShadow() {
 		return shadow;
 	}
-	public void setShadow(boolean shadow) {
+	public void setShadow(int shadow) {
 		this.shadow = shadow;
 	}
 	public int getBorder() {
@@ -131,16 +129,16 @@ public class UILayout {
 	public void setBorder(int border) {
 		this.border = border;
 	}
-	public Color getBorderColor() {
+	public String getBorderColor() {
 		return borderColor;
 	}
-	public void setBorderColor(Color borderColor) {
+	public void setBorderColor(String borderColor) {
 		this.borderColor = borderColor;
 	}
-	public boolean isBorderRound() {
+	public int isBorderRound() {
 		return borderRound;
 	}
-	public void setBorderRound(boolean borderRound) {
+	public void setBorderRound(int borderRound) {
 		this.borderRound = borderRound;
 	}
 	

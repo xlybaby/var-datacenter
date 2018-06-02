@@ -1,6 +1,8 @@
 package com.machintosh1983.var.datacenter.service.task;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,9 @@ public class AbstractUserCustomTaskServiceESImpl extends AbstractUserCustomTaskS
 		if( user == null ) {
 			
 		}
-		abstractESIndexService.addScenario( "u"+user.getUserId() + AbstractESIndexService.ES_INDEX_USER_BASE, AbstractESIndexService.ES_TYPE_USER_CUSTOM_TASK, null, scenario );
+		UUID uid = UUID.randomUUID();
+		scenario.setScenarioId(uid.toString());
+		abstractESIndexService.addScenario( "u"+user.getUserId() + AbstractESIndexService.ES_INDEX_USER_BASE, AbstractESIndexService.ES_TYPE_USER_CUSTOM_TASK, uid.toString(), scenario );
 		return true;
 	}
 
@@ -42,14 +46,22 @@ public class AbstractUserCustomTaskServiceESImpl extends AbstractUserCustomTaskS
 
 	@Override
 	public List<Scenario> getUserTasks(User user) throws WebApplicationException {
-		// TODO Auto-generated method stub
-		return null;
+		long uid = user.getUserId();
+		return abstractESIndexService.multiQuery( "u"+uid + AbstractESIndexService.ES_INDEX_USER_BASE, AbstractESIndexService.ES_TYPE_USER_CUSTOM_TASK, null, null, null, Scenario.class);
+
 	}
 
 	@Override
-	public List<Scenario> getUserTask(User user, Scenario Scenario) throws WebApplicationException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Scenario> getUserTask(User user, Scenario scenario) throws WebApplicationException {
+		String scenarioId = scenario.getScenarioId();
+		if ( scenarioId == null ) {
+			return getUserTasks(user);
+		}
+		long uid = user.getUserId();
+		List<String> fields = new ArrayList<String>();
+		fields.add("scenarioId");
+		
+		return abstractESIndexService.multiQuery( "u"+uid + AbstractESIndexService.ES_INDEX_USER_BASE, AbstractESIndexService.ES_TYPE_USER_CUSTOM_TASK, null, fields, scenarioId, Scenario.class);
 	}
 
 }

@@ -1,7 +1,11 @@
 package com.machintosh1983.var.datacenter.service.index;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.machintosh1983.var.datacenter.dao.ESLowLevelHttpClientFactory;
 import com.machintosh1983.var.datacenter.research.common.ErrorCode;
@@ -215,17 +220,25 @@ public class AbstractESIndexServiceImpl extends AbstractESIndexService {
 			if( id != null ) {
 				idstr = "/"+id;
 			}
-			String scenelist = JSONObject.toJSONString(scenario.getScenelist());
-			StringBuffer jsonstr = new StringBuffer();
-			jsonstr.append("{");
-			jsonstr.append("\"title\":\""+scenario.getTitle()+"\",");
-			jsonstr.append("\"ispublish\": "+scenario.isPublish()+",");
-			jsonstr.append("\"isavailable\": "+Boolean.TRUE+",");
-			jsonstr.append("\"script\": \""+scenelist.replaceAll("\"", "'")+"\"");
-			jsonstr.append("}");
-			logger.info(jsonstr);
+//			String scenelist = JSONObject.toJSONString(scenario.getScenelist());
+//			String layout = JSONObject.toJSONString(scenario.getLayout());
+//			String schedule = JSONObject.toJSONString(scenario.getSchedule());
+//			
+//			StringBuffer jsonstr = new StringBuffer();
+//			jsonstr.append("{");
+//			jsonstr.append("\"scenarioId\":\""+scenario.getScenarioId()+"\",");
+//			jsonstr.append("\"scenarioType\": "+scenario.getScenarioType()+",");
+//
+//			jsonstr.append("\"title\":\""+scenario.getTitle()+"\",");
+//			jsonstr.append("\"publish\": "+scenario.isPublish()+",");
+//			jsonstr.append("\"available\": 1,");
+//			jsonstr.append("\"scenelist\": "+scenelist+",");
+//			jsonstr.append("\"layout\": "+layout+",");
+//			jsonstr.append("\"schedule\": "+schedule);
+//			jsonstr.append("}");
+//			logger.info(jsonstr);
 			
-			HttpEntity entity = new NStringEntity(jsonstr.toString(), ContentType.APPLICATION_JSON);
+			HttpEntity entity = new NStringEntity(JSONObject.toJSONString(scenario), ContentType.APPLICATION_JSON);
 
 			Response response = client.performRequest("POST", "/"+getContext()+"/"+idx+"/"+type+idstr, params, entity);
 			logger.info( EntityUtils.toString(response.getEntity()) );
@@ -236,6 +249,74 @@ public class AbstractESIndexServiceImpl extends AbstractESIndexService {
 		} finally {
 			eSLowLevelHttpClientFactory.close(client);
 		}
+	}
+
+	@Override
+	public <T> List<T> multiQuery(String idx, String type, String id, List<String> fields, Object qtext, Class<T> clazz)
+			throws WebApplicationException {
+		List<T> list = null;
+		RestClient client = null;
+		try {
+			client = eSLowLevelHttpClientFactory.getClient();
+			//Map<String, String> param = Collections.singletonMap("pretty", "true");
+			StringBuffer jsonstr = new StringBuffer();
+			if( fields == null ) {
+				jsonstr.append("{\n" + 
+						"    \"query\": {\n" + 
+						"        \"match_all\": {}\n" + 
+						"    }\n" + 
+						"}");
+			} else {
+				jsonstr.append("{\"query\": {");
+				jsonstr.append("\"multi_match\": {");
+				jsonstr.append("\"query\": ");
+				if( qtext instanceof String ) {
+					jsonstr.append("\""+qtext+"\"");
+				} else
+					jsonstr.append(qtext);
+				jsonstr.append(", \"fields\": [");
+				for(int i=0; i<fields.size(); i++) {
+					if( i > 0 )
+						jsonstr.append(",");
+					String field = fields.get(i);
+					jsonstr.append("\""+field+"\"");
+				}
+				jsonstr.append("]");
+				jsonstr.append("}}}");
+			}
+			logger.info(jsonstr);
+			
+			HttpEntity entity = new NStringEntity(jsonstr.toString(), ContentType.APPLICATION_JSON);
+
+			Response response = client.performRequest("GET", "/"+getContext()+"/"+idx+"/"+type+"/_search", Collections.singletonMap("pretty", "true"), entity);
+			JSONObject json = JSONObject.parseObject(EntityUtils.toString(response.getEntity()));
+
+			JSONObject hits = json.getJSONObject("hits");
+			int total = hits.getInteger("total");
+			if( total > 0 ) {
+				list = new LinkedList<T>();
+				JSONArray array = hits.getJSONArray("hits");
+				for( int j=0; j<array.size(); j++ ) {
+					JSONObject obj = (JSONObject)array.get(j);
+					T t = obj.getObject("_source", clazz);
+					if( t != null )
+						list.add(t);
+				}
+			}
+			return list;
+		} catch (IOException e) {
+			throw new WebApplicationException(ErrorCode.CODE_3001, e, "AbstractESIndexService.generalPut()");
+		} finally {
+			eSLowLevelHttpClientFactory.close(client);
+		}
+		
+	}
+
+	@Override
+	public <T> List<T> multiFilter(String idx, String type, String id, Map<String, Object> filters, Class<T> clazz)
+			throws WebApplicationException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -119,6 +119,7 @@ public class ElasticsearchMiscellaneousApiController {
 		return abstractESIndexService.addTypeMapping(name, type, fields);
 	}
 	
+	//curl -X POST -H 'Content-Type: application/json' --data '[{"name":"scenarioId","type":"keyword"},{"name":"type","type":"integer"},{"name":"title","type":"text"},{"name":"ispublish","type":"boolean"},{"name":"isavailable","type":"boolean"},{"name":"script","type":"text"},{"name":"schedule","type":"text"},{"name":"layout","type":"text"},{"name":"createtime","type":"date","format":"yyyymmdd"}]' http://localhost:40001/datacenter/authorized/es/addTypeMapping/u10000_indice_base/custom_task
 	@RequestMapping(value="/addComplexTypeMapping/{name}/{type}", method=RequestMethod.POST)
 	public boolean addComplexTypeMapping( @PathVariable String name, @PathVariable String type, @RequestBody String mapping, HttpServletRequest request ) throws Exception {
 		User user = (User)request.getAttribute(Constant.APPLICATION_REQUEST_ATTR_NAME_USER);
