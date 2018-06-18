@@ -14,6 +14,7 @@ public interface Constant {
 	public final int VAR_ACTOR_TYPE_CLICK = 2;
 	public final int VAR_ACTOR_TYPE_DOWNLOAD = 4;
 	public final int VAR_ACTOR_TYPE_RECORDINGKV = 10;
+	public final int VAR_ACTOR_TYPE_ELEMENT = 5;
 	
 	public final String APPLICATION_COOKIE_NAME_TIME = "_time";
 	public final String APPLICATION_COOKIE_NAME_AUTORIZATION = "Authorization";

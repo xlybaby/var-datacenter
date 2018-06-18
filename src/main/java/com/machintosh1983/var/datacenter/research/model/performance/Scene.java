@@ -6,7 +6,19 @@ public class Scene {
 
 	private String href;
 	private List<Page> pages;
+	/**
+	 * Starts to collect info after specified deplay seconds
+	 */
+	private long delay;
 	
+	public long getDelay() {
+		return delay;
+	}
+
+	public void setDelay(long delay) {
+		this.delay = delay;
+	}
+
 	public String getHref() {
 		return href;
 	}

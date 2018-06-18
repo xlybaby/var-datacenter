@@ -10,9 +10,37 @@ public class Item {
     private int extract;
     private String nextPageLink;
     
+    private String label;
+    private String labelattr;
+    private String valueattr;
+    
     private int img;
     private int index;
     
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getLabelattr() {
+		return labelattr;
+	}
+
+	public void setLabelattr(String labelattr) {
+		this.labelattr = labelattr;
+	}
+
+	public String getValueattr() {
+		return valueattr;
+	}
+
+	public void setValueattr(String valueattr) {
+		this.valueattr = valueattr;
+	}
+
 	public void setLink(int link) {
 		this.link = link;
 	}

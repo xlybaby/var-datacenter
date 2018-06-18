@@ -64,4 +64,14 @@ public class AbstractUserCustomTaskServiceESImpl extends AbstractUserCustomTaskS
 		return abstractESIndexService.multiQuery( "u"+uid + AbstractESIndexService.ES_INDEX_USER_BASE, AbstractESIndexService.ES_TYPE_USER_CUSTOM_TASK, null, fields, scenarioId, Scenario.class);
 	}
 
+	@Override
+	public boolean addTasks( User user, List<Scenario> scenarios) throws WebApplicationException {
+		for(Scenario scenario: scenarios) {
+			scenario.setUser(user);
+			addTask(scenario);
+		}
+		
+		return true;
+	}
+
 }

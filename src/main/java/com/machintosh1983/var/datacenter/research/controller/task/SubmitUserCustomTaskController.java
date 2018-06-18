@@ -1,6 +1,7 @@
 package com.machintosh1983.var.datacenter.research.controller.task;
 
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,5 +47,14 @@ public class SubmitUserCustomTaskController extends BaseController {
 		return abstractUserCustomTaskService.addTask(scenario);
 	}
 	
-	
+	@RequestMapping(value="/multi-add", method=RequestMethod.POST)
+	public boolean submitList(@RequestBody List<Scenario> scenarios, HttpServletRequest request ) throws Exception {
+		User user = (User)request.getAttribute(Constant.APPLICATION_REQUEST_ATTR_NAME_USER);
+		if( user == null ) {
+			throw new WebApplicationException(ErrorCode.CODE_9000);
+		}
+		super.printHeaders(request);
+		//scenario.setUser(user);
+		return abstractUserCustomTaskService.addTasks( user, scenarios );
+	}
 }

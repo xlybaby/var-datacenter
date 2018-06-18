@@ -160,7 +160,7 @@ public class AbstractESIndexServiceImpl extends AbstractESIndexService {
 			logger.info(mappingstarts+mappingbody+mappingends);
 			HttpEntity entity = new NStringEntity(mappingstarts+mappingbody+mappingends, ContentType.APPLICATION_JSON);
 			
-			Response response = client.performRequest("POST", "/"+getContext()+"/"+name+"/"+type+"/_mapping", params, entity);
+			Response response = client.performRequest("PUT", "/"+getContext()+"/"+name+"/"+type+"/_mapping", params, entity);
 			logger.info( EntityUtils.toString(response.getEntity()) );
 	        return true;
 
@@ -237,7 +237,7 @@ public class AbstractESIndexServiceImpl extends AbstractESIndexService {
 //			jsonstr.append("\"schedule\": "+schedule);
 //			jsonstr.append("}");
 //			logger.info(jsonstr);
-			
+			logger.info(JSONObject.toJSONString(scenario));
 			HttpEntity entity = new NStringEntity(JSONObject.toJSONString(scenario), ContentType.APPLICATION_JSON);
 
 			Response response = client.performRequest("POST", "/"+getContext()+"/"+idx+"/"+type+idstr, params, entity);
