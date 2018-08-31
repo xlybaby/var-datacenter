@@ -319,4 +319,30 @@ public class AbstractESIndexServiceImpl extends AbstractESIndexService {
 		return null;
 	}
 
+	@Override
+	public boolean addDoc(String id, String indice, String type, Map<String, Object> param) throws WebApplicationException {
+		RestClient client = null;
+		try {
+			client = eSLowLevelHttpClientFactory.getClient();
+			Map<String, String> params = Collections.singletonMap("pretty", "true");
+			String idstr = "";
+			if( id != null ) {
+				idstr = "/"+id;
+			}
+
+			String doc = JSONObject.toJSONString(param);
+			logger.info(doc);
+			HttpEntity entity = new NStringEntity(doc, ContentType.APPLICATION_JSON);
+
+			Response response = client.performRequest("POST", "/"+getContext()+"/"+indice+"/"+type+idstr, params, entity);
+			logger.info( EntityUtils.toString(response.getEntity()) );
+	        return true;
+
+		} catch (IOException e) {
+			throw new WebApplicationException(ErrorCode.CODE_3001, e, "AbstractESIndexService.generalPut()");
+		} finally {
+			eSLowLevelHttpClientFactory.close(client);
+		}
+	}
+
 }

@@ -24,7 +24,9 @@ public abstract class AbstractESIndexService {
 	
 	public static final String ES_INDEX_USER_BASE = "_indice_base";
 	public static final String ES_TYPE_USER_CUSTOM_TASK = "custom_task";
-	
+	public static final String ES_INDEX_USER_CUSTOM_JOB_BASE = "i_general_schedule_base";
+	public static final String ES_INDEX_USER_CUSTOM_JOB_BASE_TYPE = "job";
+
 	public abstract String getAllIndicesInfo() throws WebApplicationException ;
 
 	public abstract String getIndiceInfo( String name ) throws WebApplicationException ;
@@ -37,7 +39,8 @@ public abstract class AbstractESIndexService {
 
 	public abstract boolean generalPut( String idx, String type, String id, Object document ) throws WebApplicationException ;
 	public abstract boolean addScenario( String idx, String type, String id, Scenario scenario ) throws WebApplicationException ;
-
+	public abstract boolean addDoc( String id, String indice, String type, Map<String, Object> params ) throws WebApplicationException ;
+	
 	public abstract <T> List<T> multiQuery( String idx, String type, String id, List<String> fields, Object qtext, Class<T> clazz ) throws WebApplicationException ;
 	
 	public abstract <T> List<T> multiFilter( String idx, String type, String id, Map<String, Object> filters, Class<T> clazz ) throws WebApplicationException ;

@@ -165,7 +165,7 @@ public class Scenario {
 		this.automation = automation;
 	}
 
-/*
+
 	public static void main( String[] args ) {
 		
 		Scenario scenario = new Scenario();
@@ -339,7 +339,7 @@ public class Scenario {
 		scenario.setScenelist(scenelist);
 		System.out.println(JSONObject.toJSONString(scenario));
 	}
-	*/
+
 	/**
 public static void main( String[] args ) {
 
@@ -578,20 +578,348 @@ public static void main( String[] args ) {
 		System.out.println(JSONObject.toJSONString(scenario));
 	}
 */
-	public static void main( String[] args ) {
+	
+//	public static void main( String[] args ) {
+//		
+//		Scenario scenario = new Scenario();
+//		
+//		scenario.setScenarioId("0d3e3b36-10a8-46c3-88cb-1e4b00136a6f");
+//		scenario.setPublish(0);
+//		scenario.setAutomation(1);
+//		scenario.setScenarioType(Constant.VAR_SCENARIO_TYPE_RANKLIST);
+//		scenario.setTitle("test ranker scenario");
+//		
+////		Schedule schedule = new Schedule();
+////		schedule.setInterval(3);
+////		schedule.setUnit(TimeUnit.SECONDS);
+////		scenario.setSchedule(schedule);
+//		
+//		UILayout layout = new UILayout();
+//		layout.setContentHeight(100);
+//		layout.setContentWidth(100);
+//		layout.setOffsetParentLeft(10);
+//		layout.setOffsetParentTop(10);
+//		scenario.setLayout(layout);
+//		
+//		User usr = new User();
+//		usr.setUserId(10001);
+//		usr.setUserName("test");
+//		usr.setRoleId(10001);
+//		scenario.setUser(usr);
+//		
+//		List<Scene> scenelist = new ArrayList<Scene>();
+//		for(int i=0; i<1; i++) {
+//			/*
+//			Scene scene = new Scene();
+//			//scene.setDelay(5);
+//			scene.setHref("http://www.cmbc.com.cn/channelApp/finance/financial.jsp");
+//			
+//			List<Page> pages = new ArrayList<Page>();
+//			for(int j=0; j<1;j++) {
+//					Page page = new Page();
+//					
+////					Pagination pagination = new Pagination();
+////					Selector pagisel = new Selector();
+////					pagisel.setTag("a");
+////					Map<String, String> attrs = new HashMap<String, String>();
+////					attrs.put("title", "下一页");
+////					pagisel.setAttributes(attrs);
+////					Selector pagiprntsel = new Selector();
+////					pagiprntsel.setClazz("pagination");
+////					pagiprntsel.setTag("div");
+////					pagination.setSelector(pagisel);
+////					pagination.setParent(pagiprntsel);
+////					page.setPagination(pagination);
+//					
+//					List<Actor> actors = new ArrayList<Actor>();
+//					//Add one actor
+//					Actor act = new Actor();
+//					Map<String, Object> actproperties = new HashMap<String, Object>();
+//					act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
+//					Selector selector = new Selector();
+//					act.setSelector(selector);
+//					
+//					
+//					List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
+//					RecordComponent recorder = new RecordComponent();
+//					List<Container> containers = new ArrayList<Container>();
+//					for(int c=0; c<1; c++) {
+//						Container container = new Container();
+//						Selector selcon = new Selector();
+//						selcon.setXpath("//*[@id=\"tableSingle\"]/tbody");
+//						container.setSelector(selcon);
+//						List<Iterator> iterators = new ArrayList<Iterator>();
+//						for(int it=0; it<1; it++) {
+//							Iterator iterator = new Iterator();
+//							Selector itersel = new Selector();
+//							//itersel.setTag("li");
+//							itersel.setXpath("tr");
+//							iterator.setSelector(itersel);
+//							List<Item> items = new ArrayList<Item>();
+//							for(int t=0;t<3;t++) {
+//								Item item = new Item();
+//								if(t==0) {
+//									Selector itemsel = new Selector();
+//									//itemsel.setTag("a");
+//									itemsel.setXpath("td[1]/a");
+//									item.setLabel("y-axis-label");
+//									
+//									item.setSelector(itemsel);
+//								}
+//								if(t==1) {
+//									Selector itemsel = new Selector();
+//									itemsel.setXpath("td[4]");
+//									item.setLabel("x-axis-value");
+//
+//									item.setSelector(itemsel);
+//								}
+//								if(t==2) {
+//									Selector itemsel = new Selector();
+//									itemsel.setXpath("td[1]/a");
+//									item.setLabel("item-external-link");
+//									item.setValueattr("href");
+//									item.setSelector(itemsel);
+//								}
+//								items.add(item);
+//							}
+//							iterator.setItems(items);
+//							iterators.add(iterator);
+//						}
+//						container.setIterators(iterators);
+//						containers.add(container);
+//						
+//					}
+//					
+//					recorder.setContainers(containers);
+//					reccomps.add(recorder);
+//					actproperties.put("pageComponent", reccomps);
+//					act.setProperties(actproperties);
+//					actors.add(act);
+//					//end add one actor
+//					
+//					page.setActors(actors);
+//					pages.add(page);
+//				
+//				
+//			
+//			}
+//			scene.setPages(pages);
+//			scenelist.add(scene);
+//			*/
+//			/*
+//			Scene scene = new Scene();
+//			//scene.setDelay(5);
+//			scene.setHref("http://finance.ccb.com/cn/finance/product.html");
+//			
+//			List<Page> pages = new ArrayList<Page>();
+//			for(int j=0; j<1;j++) {
+//					Page page = new Page();
+//					
+////					Pagination pagination = new Pagination();
+////					Selector pagisel = new Selector();
+////					pagisel.setTag("a");
+////					Map<String, String> attrs = new HashMap<String, String>();
+////					attrs.put("title", "下一页");
+////					pagisel.setAttributes(attrs);
+////					Selector pagiprntsel = new Selector();
+////					pagiprntsel.setClazz("pagination");
+////					pagiprntsel.setTag("div");
+////					pagination.setSelector(pagisel);
+////					pagination.setParent(pagiprntsel);
+////					page.setPagination(pagination);
+//					
+//					List<Actor> actors = new ArrayList<Actor>();
+//					//Add one actor
+//					Actor act = new Actor();
+//					Map<String, Object> actproperties = new HashMap<String, Object>();
+//					act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
+//					Selector selector = new Selector();
+//					act.setSelector(selector);
+//					
+//					
+//					List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
+//					RecordComponent recorder = new RecordComponent();
+//					List<Container> containers = new ArrayList<Container>();
+//					for(int c=0; c<1; c++) {
+//						Container container = new Container();
+//						Selector selcon = new Selector();
+//						selcon.setXpath("//*[@id=\"list1\"]/table/tbody");
+//						container.setSelector(selcon);
+//						List<Iterator> iterators = new ArrayList<Iterator>();
+//						for(int it=0; it<1; it++) {
+//							Iterator iterator = new Iterator();
+//							Selector itersel = new Selector();
+//							//itersel.setTag("li");
+//							itersel.setXpath("tr");
+//							iterator.setSelector(itersel);
+//							List<Item> items = new ArrayList<Item>();
+//							for(int t=0;t<3;t++) {
+//								Item item = new Item();
+//								if(t==0) {
+//									Selector itemsel = new Selector();
+//									//itemsel.setTag("a");
+//									itemsel.setXpath("td[1]/div/div/a");
+//									item.setLabel("y-axis-label");
+//									
+//									item.setSelector(itemsel);
+//								}
+//								if(t==1) {
+//									Selector itemsel = new Selector();
+//									itemsel.setXpath("td[5]");
+//									item.setLabel("x-axis-value");
+//
+//									item.setSelector(itemsel);
+//								}
+//								if(t==2) {
+//									Selector itemsel = new Selector();
+//									itemsel.setXpath("td[1]/div/div/a");
+//									item.setLabel("item-external-link");
+//									//item.setValueattr("href");
+//									item.setLink(1);
+//									item.setSelector(itemsel);
+//								}
+//								items.add(item);
+//							}
+//							iterator.setItems(items);
+//							iterators.add(iterator);
+//						}
+//						container.setIterators(iterators);
+//						containers.add(container);
+//						
+//					}
+//					
+//					recorder.setContainers(containers);
+//					reccomps.add(recorder);
+//					actproperties.put("pageComponent", reccomps);
+//					act.setProperties(actproperties);
+//					actors.add(act);
+//					//end add one actor
+//					
+//					page.setActors(actors);
+//					pages.add(page);
+//				
+//				
+//			
+//			}
+//			scene.setPages(pages);
+//			scenelist.add(scene);
+//			*/
+//			Scene scene = new Scene();
+//			//scene.setDelay(5);
+//			scene.setHref("https://bank.pingan.com.cn/m/aum/finance/finance-prolist/index.html");
+//			
+//			List<Page> pages = new ArrayList<Page>();
+//			for(int j=0; j<1;j++) {
+//					Page page = new Page();
+//					
+////					Pagination pagination = new Pagination();
+////					Selector pagisel = new Selector();
+////					pagisel.setTag("a");
+////					Map<String, String> attrs = new HashMap<String, String>();
+////					attrs.put("title", "下一页");
+////					pagisel.setAttributes(attrs);
+////					Selector pagiprntsel = new Selector();
+////					pagiprntsel.setClazz("pagination");
+////					pagiprntsel.setTag("div");
+////					pagination.setSelector(pagisel);
+////					pagination.setParent(pagiprntsel);
+////					page.setPagination(pagination);
+//					
+//					List<Actor> actors = new ArrayList<Actor>();
+//					//Add one actor
+//					Actor act = new Actor();
+//					Map<String, Object> actproperties = new HashMap<String, Object>();
+//					act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
+//					Selector selector = new Selector();
+//					act.setSelector(selector);
+//
+//					List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
+//					RecordComponent recorder = new RecordComponent();
+//					List<Container> containers = new ArrayList<Container>();
+//					for(int c=0; c<1; c++) {
+//						Container container = new Container();
+//						Selector selcon = new Selector();
+//						selcon.setXpath("//table[@class=\"product-list\"]/tbody");
+//						container.setSelector(selcon);
+//						List<Iterator> iterators = new ArrayList<Iterator>();
+//						for(int it=0; it<1; it++) {
+//							Iterator iterator = new Iterator();
+//							Selector itersel = new Selector();
+//							//itersel.setTag("li");
+//							itersel.setXpath("tr");
+//							iterator.setSelector(itersel);
+//							List<Item> items = new ArrayList<Item>();
+//							for(int t=0;t<3;t++) {
+//								Item item = new Item();
+//								if(t==0) {
+//									Selector itemsel = new Selector();
+//									//itemsel.setTag("a");
+//									itemsel.setXpath("td[4]/h6");
+//									item.setLabel("y-axis-label");
+//									
+//									item.setSelector(itemsel);
+//								}
+//								if(t==1) {
+//									Selector itemsel = new Selector();
+//									itemsel.setXpath("td[1]/h6");
+//									item.setLabel("x-axis-value");
+//
+//									item.setSelector(itemsel);
+//								}
+//								if(t==2) {
+//									Selector itemsel = new Selector();
+//									itemsel.setXpath("td[6]/a");
+//									item.setLabel("item-external-link");
+//									//item.setValueattr("href");
+//									item.setLink(1);
+//									item.setSelector(itemsel);
+//								}
+//								items.add(item);
+//							}
+//							iterator.setItems(items);
+//							iterators.add(iterator);
+//						}
+//						container.setIterators(iterators);
+//						containers.add(container);
+//						
+//					}
+//					
+//					recorder.setContainers(containers);
+//					reccomps.add(recorder);
+//					actproperties.put("pageComponent", reccomps);
+//					act.setProperties(actproperties);
+//					actors.add(act);
+//					//end add one actor
+//					
+//					page.setActors(actors);
+//					pages.add(page);
+//				
+//				
+//			
+//			}
+//			scene.setPages(pages);
+//			scenelist.add(scene);
+//		}
+//		
+//		scenario.setScenelist(scenelist);
+//		System.out.println(JSONObject.toJSONString(scenario));
+//	}
+	
+/*
+public static void main( String[] args ) {
 		
 		Scenario scenario = new Scenario();
 		
 		scenario.setScenarioId("0d3e3b36-10a8-46c3-88cb-1e4b00136a6f");
 		scenario.setPublish(0);
-		scenario.setAutomation(1);
-		scenario.setScenarioType(Constant.VAR_SCENARIO_TYPE_RANKLIST);
-		scenario.setTitle("test ranker scenario");
+		//scenario.setAutomation(1);
+		scenario.setScenarioType(Constant.VAR_SCENARIO_TYPE_REFRESHBLOCK);
+		scenario.setTitle("test subscriber scenario");
 		
-//		Schedule schedule = new Schedule();
-//		schedule.setInterval(3);
-//		schedule.setUnit(TimeUnit.SECONDS);
-//		scenario.setSchedule(schedule);
+		Schedule schedule = new Schedule();
+		schedule.setInterval(1);
+		schedule.setUnit(TimeUnit.MINUTES);
+		scenario.setSchedule(schedule);
 		
 		UILayout layout = new UILayout();
 		layout.setContentHeight(100);
@@ -608,299 +936,89 @@ public static void main( String[] args ) {
 		
 		List<Scene> scenelist = new ArrayList<Scene>();
 		for(int i=0; i<1; i++) {
-			/*
 			Scene scene = new Scene();
+			scene.setHref("http://www.zuanke8.com/forum-2-1.html");
 			//scene.setDelay(5);
-			scene.setHref("http://www.cmbc.com.cn/channelApp/finance/financial.jsp");
-			
 			List<Page> pages = new ArrayList<Page>();
 			for(int j=0; j<1;j++) {
-					Page page = new Page();
-					
-//					Pagination pagination = new Pagination();
-//					Selector pagisel = new Selector();
-//					pagisel.setTag("a");
-//					Map<String, String> attrs = new HashMap<String, String>();
-//					attrs.put("title", "下一页");
-//					pagisel.setAttributes(attrs);
-//					Selector pagiprntsel = new Selector();
-//					pagiprntsel.setClazz("pagination");
-//					pagiprntsel.setTag("div");
-//					pagination.setSelector(pagisel);
-//					pagination.setParent(pagiprntsel);
-//					page.setPagination(pagination);
-					
-					List<Actor> actors = new ArrayList<Actor>();
-					//Add one actor
-					Actor act = new Actor();
-					Map<String, Object> actproperties = new HashMap<String, Object>();
-					act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
-					Selector selector = new Selector();
-					act.setSelector(selector);
-					
-					
-					List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
-					RecordComponent recorder = new RecordComponent();
-					List<Container> containers = new ArrayList<Container>();
-					for(int c=0; c<1; c++) {
-						Container container = new Container();
-						Selector selcon = new Selector();
-						selcon.setXpath("//*[@id=\"tableSingle\"]/tbody");
-						container.setSelector(selcon);
-						List<Iterator> iterators = new ArrayList<Iterator>();
-						for(int it=0; it<1; it++) {
-							Iterator iterator = new Iterator();
-							Selector itersel = new Selector();
-							//itersel.setTag("li");
-							itersel.setXpath("tr");
-							iterator.setSelector(itersel);
-							List<Item> items = new ArrayList<Item>();
-							for(int t=0;t<3;t++) {
-								Item item = new Item();
-								if(t==0) {
-									Selector itemsel = new Selector();
-									//itemsel.setTag("a");
-									itemsel.setXpath("td[1]/a");
-									item.setLabel("y-axis-label");
-									
-									item.setSelector(itemsel);
-								}
-								if(t==1) {
-									Selector itemsel = new Selector();
-									itemsel.setXpath("td[4]");
-									item.setLabel("x-axis-value");
+				Page page = new Page();
+				
+				List<Actor> actors = new ArrayList<Actor>();
+				//Add one actor
+				Actor act = new Actor();
+				Map<String, Object> actproperties = new HashMap<String, Object>();
+				act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
+				Selector selector = new Selector();
+				act.setSelector(selector);
+				
+				
+				List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
+				RecordComponent recorder = new RecordComponent();
+				List<Container> containers = new ArrayList<Container>();
 
-									item.setSelector(itemsel);
-								}
-								if(t==2) {
-									Selector itemsel = new Selector();
-									itemsel.setXpath("td[1]/a");
-									item.setLabel("item-external-link");
-									item.setValueattr("href");
-									item.setSelector(itemsel);
-								}
+				for(int c=0; c<1; c++) {
+					Container container = new Container();
+					Selector selcon = new Selector();
+					selcon.setXpath("//table[@id=\"threadlisttableid\"]");
+					container.setSelector(selcon);
+					List<Iterator> iterators = new ArrayList<Iterator>();
+					for(int it=0; it<1; it++) {
+						Iterator iterator = new Iterator();
+						Selector itersel = new Selector();
+						itersel.setXpath("tbody");;
+						iterator.setSelector(itersel);
+						List<Item> items = new ArrayList<Item>();
+						for(int t=0;t<2;t++) {
+							if(t==0) {
+								Item item = new Item();
+								Selector itemsel = new Selector();
+								itemsel.setXpath("tr[1]/th[1]/a[1]");
+								item.setLabel("hash-item");
+								item.setSelector(itemsel);
 								items.add(item);
 							}
-							iterator.setItems(items);
-							iterators.add(iterator);
+							if(t==1) {
+								Item item = new Item();
+								Selector itemsel = new Selector();
+								itemsel.setXpath("tr[1]/th[1]/a[1]");
+								item.setLabel("extract-link");
+								item.setLink(1);
+	
+								item.setSelector(itemsel);
+								items.add(item);
+							}
 						}
-						container.setIterators(iterators);
-						containers.add(container);
-						
+						iterator.setItems(items);
+						iterators.add(iterator);
 					}
+					container.setIterators(iterators);
 					
-					recorder.setContainers(containers);
-					reccomps.add(recorder);
-					actproperties.put("pageComponent", reccomps);
-					act.setProperties(actproperties);
-					actors.add(act);
-					//end add one actor
+					containers.add(container);
 					
-					page.setActors(actors);
-					pages.add(page);
+				}
+				recorder.setContainers(containers);
+				reccomps.add(recorder);
+				actproperties.put("pageComponent", reccomps);
+				act.setProperties(actproperties);
+				actors.add(act);
 				
 				
+				
+				//end add one actor
+				
+				page.setActors(actors);
+				pages.add(page);
+			
 			
 			}
 			scene.setPages(pages);
 			scenelist.add(scene);
-			*/
-			/*
-			Scene scene = new Scene();
-			//scene.setDelay(5);
-			scene.setHref("http://finance.ccb.com/cn/finance/product.html");
-			
-			List<Page> pages = new ArrayList<Page>();
-			for(int j=0; j<1;j++) {
-					Page page = new Page();
-					
-//					Pagination pagination = new Pagination();
-//					Selector pagisel = new Selector();
-//					pagisel.setTag("a");
-//					Map<String, String> attrs = new HashMap<String, String>();
-//					attrs.put("title", "下一页");
-//					pagisel.setAttributes(attrs);
-//					Selector pagiprntsel = new Selector();
-//					pagiprntsel.setClazz("pagination");
-//					pagiprntsel.setTag("div");
-//					pagination.setSelector(pagisel);
-//					pagination.setParent(pagiprntsel);
-//					page.setPagination(pagination);
-					
-					List<Actor> actors = new ArrayList<Actor>();
-					//Add one actor
-					Actor act = new Actor();
-					Map<String, Object> actproperties = new HashMap<String, Object>();
-					act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
-					Selector selector = new Selector();
-					act.setSelector(selector);
-					
-					
-					List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
-					RecordComponent recorder = new RecordComponent();
-					List<Container> containers = new ArrayList<Container>();
-					for(int c=0; c<1; c++) {
-						Container container = new Container();
-						Selector selcon = new Selector();
-						selcon.setXpath("//*[@id=\"list1\"]/table/tbody");
-						container.setSelector(selcon);
-						List<Iterator> iterators = new ArrayList<Iterator>();
-						for(int it=0; it<1; it++) {
-							Iterator iterator = new Iterator();
-							Selector itersel = new Selector();
-							//itersel.setTag("li");
-							itersel.setXpath("tr");
-							iterator.setSelector(itersel);
-							List<Item> items = new ArrayList<Item>();
-							for(int t=0;t<3;t++) {
-								Item item = new Item();
-								if(t==0) {
-									Selector itemsel = new Selector();
-									//itemsel.setTag("a");
-									itemsel.setXpath("td[1]/div/div/a");
-									item.setLabel("y-axis-label");
-									
-									item.setSelector(itemsel);
-								}
-								if(t==1) {
-									Selector itemsel = new Selector();
-									itemsel.setXpath("td[5]");
-									item.setLabel("x-axis-value");
 
-									item.setSelector(itemsel);
-								}
-								if(t==2) {
-									Selector itemsel = new Selector();
-									itemsel.setXpath("td[1]/div/div/a");
-									item.setLabel("item-external-link");
-									//item.setValueattr("href");
-									item.setLink(1);
-									item.setSelector(itemsel);
-								}
-								items.add(item);
-							}
-							iterator.setItems(items);
-							iterators.add(iterator);
-						}
-						container.setIterators(iterators);
-						containers.add(container);
-						
-					}
-					
-					recorder.setContainers(containers);
-					reccomps.add(recorder);
-					actproperties.put("pageComponent", reccomps);
-					act.setProperties(actproperties);
-					actors.add(act);
-					//end add one actor
-					
-					page.setActors(actors);
-					pages.add(page);
-				
-				
-			
-			}
-			scene.setPages(pages);
-			scenelist.add(scene);
-			*/
-			Scene scene = new Scene();
-			//scene.setDelay(5);
-			scene.setHref("https://bank.pingan.com.cn/m/aum/finance/finance-prolist/index.html");
-			
-			List<Page> pages = new ArrayList<Page>();
-			for(int j=0; j<1;j++) {
-					Page page = new Page();
-					
-//					Pagination pagination = new Pagination();
-//					Selector pagisel = new Selector();
-//					pagisel.setTag("a");
-//					Map<String, String> attrs = new HashMap<String, String>();
-//					attrs.put("title", "下一页");
-//					pagisel.setAttributes(attrs);
-//					Selector pagiprntsel = new Selector();
-//					pagiprntsel.setClazz("pagination");
-//					pagiprntsel.setTag("div");
-//					pagination.setSelector(pagisel);
-//					pagination.setParent(pagiprntsel);
-//					page.setPagination(pagination);
-					
-					List<Actor> actors = new ArrayList<Actor>();
-					//Add one actor
-					Actor act = new Actor();
-					Map<String, Object> actproperties = new HashMap<String, Object>();
-					act.setType(Constant.VAR_ACTOR_TYPE_RECORDING);
-					Selector selector = new Selector();
-					act.setSelector(selector);
-
-					List<RecordComponent> reccomps = new ArrayList<RecordComponent>();
-					RecordComponent recorder = new RecordComponent();
-					List<Container> containers = new ArrayList<Container>();
-					for(int c=0; c<1; c++) {
-						Container container = new Container();
-						Selector selcon = new Selector();
-						selcon.setXpath("//table[@class=\"product-list\"]/tbody");
-						container.setSelector(selcon);
-						List<Iterator> iterators = new ArrayList<Iterator>();
-						for(int it=0; it<1; it++) {
-							Iterator iterator = new Iterator();
-							Selector itersel = new Selector();
-							//itersel.setTag("li");
-							itersel.setXpath("tr");
-							iterator.setSelector(itersel);
-							List<Item> items = new ArrayList<Item>();
-							for(int t=0;t<3;t++) {
-								Item item = new Item();
-								if(t==0) {
-									Selector itemsel = new Selector();
-									//itemsel.setTag("a");
-									itemsel.setXpath("td[4]/h6");
-									item.setLabel("y-axis-label");
-									
-									item.setSelector(itemsel);
-								}
-								if(t==1) {
-									Selector itemsel = new Selector();
-									itemsel.setXpath("td[1]/h6");
-									item.setLabel("x-axis-value");
-
-									item.setSelector(itemsel);
-								}
-								if(t==2) {
-									Selector itemsel = new Selector();
-									itemsel.setXpath("td[6]/a");
-									item.setLabel("item-external-link");
-									//item.setValueattr("href");
-									item.setLink(1);
-									item.setSelector(itemsel);
-								}
-								items.add(item);
-							}
-							iterator.setItems(items);
-							iterators.add(iterator);
-						}
-						container.setIterators(iterators);
-						containers.add(container);
-						
-					}
-					
-					recorder.setContainers(containers);
-					reccomps.add(recorder);
-					actproperties.put("pageComponent", reccomps);
-					act.setProperties(actproperties);
-					actors.add(act);
-					//end add one actor
-					
-					page.setActors(actors);
-					pages.add(page);
-				
-				
-			
-			}
-			scene.setPages(pages);
-			scenelist.add(scene);
 		}
 		
 		scenario.setScenelist(scenelist);
 		System.out.println(JSONObject.toJSONString(scenario));
 	}
+*/
+	
 }

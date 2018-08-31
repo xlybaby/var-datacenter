@@ -16,6 +16,10 @@ public interface Constant {
 	public final int VAR_ACTOR_TYPE_RECORDINGKV = 10;
 	public final int VAR_ACTOR_TYPE_ELEMENT = 5;
 	
+	public final int VAR_USER_CUSTOM_JOB_STATUS_ACTIVE = 1;
+	public final int VAR_USER_CUSTOM_JOB_STATUS_DISABLE = 2;
+	public final int VAR_USER_CUSTOM_JOB_STATUS_DELETED = 0;
+	
 	public final String APPLICATION_COOKIE_NAME_TIME = "_time";
 	public final String APPLICATION_COOKIE_NAME_AUTORIZATION = "Authorization";
 	

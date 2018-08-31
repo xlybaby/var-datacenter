@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.machintosh1983.var.datacenter.research.common.Constant;
 import com.machintosh1983.var.datacenter.research.common.ErrorCode;
 import com.machintosh1983.var.datacenter.research.common.WebApplicationException;
+import com.machintosh1983.var.datacenter.research.controller.BaseController;
 import com.machintosh1983.var.datacenter.research.model.User;
 import com.machintosh1983.var.datacenter.research.model.elasticsearch.Field;
 import com.machintosh1983.var.datacenter.service.index.AbstractESIndexService;
@@ -27,7 +28,7 @@ import com.machintosh1983.var.datacenter.service.index.AbstractESIndexService;
  */
 @RestController
 @RequestMapping("/authorized/es")
-public class ElasticsearchMiscellaneousApiController {
+public class ElasticsearchMiscellaneousApiController extends BaseController {
 
 	@Autowired
 	private AbstractESIndexService abstractESIndexService;
@@ -38,7 +39,7 @@ public class ElasticsearchMiscellaneousApiController {
 		if( user == null ) {
 			throw new WebApplicationException(ErrorCode.CODE_9000);
 		}
-		
+		super.printHeaders(request);
 		return abstractESIndexService.getAllIndicesInfo();
 	}
 	

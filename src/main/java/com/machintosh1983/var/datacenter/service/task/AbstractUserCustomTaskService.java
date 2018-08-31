@@ -11,7 +11,9 @@ public abstract class AbstractUserCustomTaskService {
 	public abstract boolean addTask( Scenario scenario ) throws WebApplicationException ;
 	
 	public abstract boolean addTasks( User user, List<Scenario> scenarios ) throws WebApplicationException ;
-
+	
+	public abstract boolean addTask(String indice, String type, Scenario scenario) throws WebApplicationException ;
+	
 	public abstract boolean updateTask( Scenario scenario ) throws WebApplicationException ;
 	
 	public abstract boolean removeTask( Scenario scenario ) throws WebApplicationException ;
