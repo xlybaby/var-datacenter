@@ -20,6 +20,7 @@ public class UILayout {
 	private int marginLeft;
 	
 	private String backgroundColor = "#FFFFFF";
+	private String backgroundImage;
 	private float opacity = 1.0f;
 	
 	private int shadow;
@@ -140,6 +141,18 @@ public class UILayout {
 	}
 	public void setBorderRound(int borderRound) {
 		this.borderRound = borderRound;
+	}
+	public String getBackgroundImage() {
+		return backgroundImage;
+	}
+	public void setBackgroundImage(String backgroundImage) {
+		this.backgroundImage = backgroundImage;
+	}
+	public int getShadow() {
+		return shadow;
+	}
+	public int getBorderRound() {
+		return borderRound;
 	}
 	
 }
