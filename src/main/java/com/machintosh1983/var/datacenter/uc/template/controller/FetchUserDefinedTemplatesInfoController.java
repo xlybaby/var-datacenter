@@ -1,4 +1,4 @@
-package com.machintosh1983.var.datacenter.uc.controller;
+package com.machintosh1983.var.datacenter.uc.template.controller;
 
 import java.util.List;
 
