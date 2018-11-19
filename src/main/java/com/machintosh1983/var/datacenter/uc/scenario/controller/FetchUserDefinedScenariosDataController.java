@@ -1,5 +1,6 @@
 package com.machintosh1983.var.datacenter.uc.scenario.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class FetchUserDefinedScenariosDataController extends BaseController {
 	@RequestMapping(value="/data", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<Object, String> data( @RequestBody ScenarioQueryVO scenarioQueryVO, HttpServletRequest request ) throws Exception {
-		Map<Object, String> result = null;
+		Map<Object, String> result = new HashMap<Object, String>();
 		logger.info("Fetch scenario[id: " + scenarioQueryVO.getScenarioId() + "] data");
 		String res = "[{\"value\":\"item1\", \"level\":\"1\"},"
 				+ "{\"value\":\"item2\", \"level\":\"1\"},"
