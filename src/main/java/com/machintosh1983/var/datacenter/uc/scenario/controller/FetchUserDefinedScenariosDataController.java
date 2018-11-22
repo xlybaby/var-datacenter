@@ -1,6 +1,10 @@
 package com.machintosh1983.var.datacenter.uc.scenario.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,78 +30,95 @@ import com.machintosh1983.var.datacenter.uc.scenario.vo.ScenarioQueryVO;
 public class FetchUserDefinedScenariosDataController extends BaseController {
 	
 	private Logger logger = Logger.getLogger(getClass());
+	LinkedHashMap<String, LinkedHashMap<String,String>> testdata = null;
+	
+	{
+		testdata = new LinkedHashMap<String, LinkedHashMap<String,String>>();
+		
+		LinkedHashMap<String,String> ary1 = new LinkedHashMap<String,String>();
+		ary1.put("xiaohuadao","消化系统及代谢药");
+		ary1.put("xueye","血液和造血系统药物");
+		ary1.put("xinxueguan","心血管系统药物");
+		ary1.put("pifubing","皮肤病用药");
+		testdata.put("root", ary1);
+		
+		LinkedHashMap<String,String> ary2 = new LinkedHashMap<String,String>();
+		ary2.put("kouqiang", "口腔科用药");
+		ary2.put("zhitu","止吐药和止恶心药");
+		ary2.put("zhixie","止泻药，肠道抗炎/抗感染药");
+		ary2.put("changwei","胃肠解痉药，抗胆碱药和胃动力药");
+		testdata.put("xiaohuadao", ary2);
+		
+		LinkedHashMap<String,String> ary3 = new LinkedHashMap<String,String>();
+		ary3.put("yaoping11", "盐酸米诺环素胶囊");
+		ary3.put("yaoping12", "盐酸米诺环素胶囊");
+		ary3.put("yaoping13", "盐酸米诺环素胶囊");
+		ary3.put("yaoping14", "盐酸多西环素片");
+		ary3.put("yaoping15", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping16", "氨来呫诺糊剂");
+		ary3.put("yaoping17", "注射用盐酸多西环素");
+		ary3.put("yaoping18", "双氯芬酸钠喷雾剂");
+		ary3.put("yaoping19", "盐酸多西环素片");
+		ary3.put("yaoping111", "甲硝唑芬布芬胶囊");
+		ary3.put("yaoping112", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping113", "甲硝唑缓释片");
+		ary3.put("yaoping114", "甲硝唑缓释片");
+		ary3.put("yaoping115", "甲硝唑缓释片");
+		ary3.put("yaoping116", "甲硝唑缓释片");
+		ary3.put("yaoping117", "甲硝唑缓释片");
+		ary3.put("yaoping118", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping119", "氨来呫诺糊剂");
+		ary3.put("yaoping120", "注射用盐酸多西环素");
+		ary3.put("yaoping121", "双氯芬酸钠喷雾剂");
+		ary3.put("yaoping122", "盐酸多西环素片");
+		ary3.put("yaoping123", "甲硝唑芬布芬胶囊");
+		ary3.put("yaoping124", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping125", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping126", "氨来呫诺糊剂");
+		ary3.put("yaoping127", "注射用盐酸多西环素");
+		ary3.put("yaoping128", "双氯芬酸钠喷雾剂");
+		ary3.put("yaoping129", "盐酸多西环素片");
+		ary3.put("yaoping130", "甲硝唑芬布芬胶囊");
+		ary3.put("yaoping131", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping132", "人工牛黄甲硝唑胶囊");
+		ary3.put("yaoping133", "氨来呫诺糊剂");
+		ary3.put("yaoping134", "注射用盐酸多西环素");
+		ary3.put("yaoping135", "双氯芬酸钠喷雾剂");
+		ary3.put("yaoping136", "盐酸多西环素片");
+		ary3.put("yaoping137", "甲硝唑芬布芬胶囊");
+		ary3.put("yaoping138", "人工牛黄甲硝唑胶囊");
+		
+		testdata.put("kouqiang", ary3);
+	}
 	
 	@RequestMapping(value="/data/corpus", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<Object, String> dataCorpus( @RequestBody CorpusScenarioQueryVO scenarioQueryVO, HttpServletRequest request ) throws Exception {
 		Map<Object, String> result = new HashMap<Object, String>();
-		int level = scenarioQueryVO.getLevel();
 		String parentId = scenarioQueryVO.getParentId();
+		int limit = scenarioQueryVO.getLimit();
+		int offset = scenarioQueryVO.getOffset();
 		
-		String res = null;
-		logger.info("Fetch scenario[id: " + scenarioQueryVO.getScenarioId() + "] data");
-		if( level == 1 )
-			res = "[{\"id\":\"item1\", \"parentId\":\"\", \"value\":\"item1\", \"level\":\"1\"},"
-					+ "{\"id\":\"item2\", \"parentId\":\"\", \"value\":\"item2\", \"level\":\"1\"},"
-					+ "{\"id\":\"item3\", \"parentId\":\"\", \"value\":\"item3\", \"level\":\"1\"},"
-					+ "{\"id\":\"item4\", \"parentId\":\"\", \"value\":\"item4\", \"level\":\"1\"},"
-					+ "{\"id\":\"item5\", \"parentId\":\"\", \"value\":\"item5\", \"level\":\"1\"}]";//for test
-		
-		if( level == 2 ) {
-			if(parentId.equals("item1"))
-				res =  "[{\"id\":\"subitem1\", \"parentId\":\"item1\", \"value\":\"subitem1\", \"level\":\"2\"},"
-						+ "{\"id\":\"subitem2\", \"parentId\":\"item1\", \"value\":\"subitem2\", \"level\":\"2\"},"
-						+ "{\"id\":\"subitem3\", \"parentId\":\"item1\", \"value\":\"subitem3\", \"level\":\"2\"},"
-						+ "{\"id\":\"subitem4\", \"parentId\":\"item1\", \"value\":\"subitem4\", \"level\":\"2\"},"
-						+ "{\"id\":\"subitem5\", \"parentId\":\"item1\", \"value\":\"subitem5\", \"level\":\"2\"}]";//for test
-			if(parentId.equals("item2"))
-				res = "[{\"id\":\"sublist1\", \"parentId\":\"item2\", \"value\":\"sublist1\", \"level\":\"2\"},"
-						+ "{\"id\":\"sublist2\", \"parentId\":\"item2\", \"value\":\"sublist2\", \"level\":\"2\"},"
-						+ "{\"id\":\"sublist3\", \"parentId\":\"item2\", \"value\":\"sublist3\", \"level\":\"2\"},"
-						+ "{\"id\":\"sublist4\", \"parentId\":\"item2\", \"value\":\"sublist4\", \"level\":\"2\"},"
-						+ "{\"id\":\"sublist5\", \"parentId\":\"item2\", \"value\":\"sublist5\", \"level\":\"2\"}]";//for test
-			if(parentId.equals("item4"))
-				res = "[{\"id\":\"subchild1\", \"parentId\":\"item4\", \"value\":\"subchild1\", \"level\":\"2\"},"
-						+ "{\"id\":\"subchild2\", \"parentId\":\"item4\", \"value\":\"subchild2\", \"level\":\"2\"},";
+		Map<String,String> res = testdata.get(parentId);
+		if( res == null ) res = new HashMap<String,String>();
+		String jsonstr = "[";
+		int point = 0;
+		for(Iterator<String> keys = res.keySet().iterator(); keys.hasNext();) {
+			if( offset == point ) {
+				String key = keys.next();
+				String value = res.get(key);
+				jsonstr += "{\"id\":\""+key+"\",\"value\":\""+value+"\"},";
+			}
+			point++;
+			if( point == (offset+limit))
+				break;
 		}
+		if(jsonstr.endsWith(","))
+			jsonstr = jsonstr.substring(0, jsonstr.length()-1);
+		jsonstr += "]";
 		
-		if( level == 3 ) {
-			if(parentId.equals("subitem1"))
-				res = "[{\"id\":\"subitem1-child1\", \"parentId\":\"subitem1\", \"value\":\"subitem1-child1\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem1-child2\", \"parentId\":\"subitem1\", \"value\":\"subitem1-child2\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem1-child3\", \"parentId\":\"subitem1\", \"value\":\"subitem1-child3\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem1-child4\", \"parentId\":\"subitem1\", \"value\":\"subitem1-child4\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem1-child5\", \"parentId\":\"subitem1\", \"value\":\"subitem1-child5\", \"level\":\"3\"}]";//for test
-			if(parentId.equals("subitem3"))
-				res = "[{\"id\":\"subitem3-child1\", \"parentId\":\"subitem3\", \"value\":\"subitem3-child1\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem3-child2\", \"parentId\":\"subitem3\", \"value\":\"subitem3-child2\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem3-child3\", \"parentId\":\"subitem3\", \"value\":\"subitem3-child3\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem3-child4\", \"parentId\":\"subitem3\", \"value\":\"subitem3-child4\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem3-child5\", \"parentId\":\"subitem3\", \"value\":\"subitem3-child5\", \"level\":\"3\"}]";//for test
-			if(parentId.equals("subitem5"))
-				res = "[{\"id\":\"subitem5-child1\", \"parentId\":\"subitem5\", \"value\":\"subitem5-child1\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem5-child2\", \"parentId\":\"subitem5\", \"value\":\"subitem5-child2\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem5-child3\", \"parentId\":\"subitem5\", \"value\":\"subitem5-child3\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem5-child4\", \"parentId\":\"subitem5\", \"value\":\"subitem5-child4\", \"level\":\"3\"},"
-						+ "{\"id\":\"subitem5-child5\", \"parentId\":\"subitem5\", \"value\":\"subitem5-child5\", \"level\":\"3\"}]";//for test
-			
-			if(parentId.equals("sublist2"))
-				res = "[{\"id\":\"sublist2-child1\", \"parentId\":\"sublist2\", \"value\":\"sublist2-child1\", \"level\":\"3\"},"
-						+ "{\"id\":\"sublist2-child2\", \"parentId\":\"sublist2\", \"value\":\"sublist2-child2\", \"level\":\"3\"},"
-						+ "{\"id\":\"sublist2-child3\", \"parentId\":\"sublist2\", \"value\":\"sublist2-child3\", \"level\":\"3\"},"
-						+ "{\"id\":\"sublist2-child4\", \"parentId\":\"sublist2\", \"value\":\"sublist2-child4\", \"level\":\"3\"},"
-						+ "{\"id\":\"sublist2-child5\", \"parentId\":\"sublist2\", \"value\":\"sublist2-child5\", \"level\":\"3\"}]";//for test
-			
-			if(parentId.equals("subchild1"))
-				res = "[{\"id\":\"subchild1-child1\", \"parentId\":\"subchild1\", \"value\":\"subchild1-child1\", \"level\":\"3\"},"
-						+ "{\"id\":\"subchild1-child2\", \"parentId\":\"subchild1\", \"value\":\"subchild1-child2\", \"level\":\"3\"},"
-						+ "{\"id\":\"subchild1-child3\", \"parentId\":\"subchild1\", \"value\":\"subchild1-child3\", \"level\":\"3\"},"
-						+ "{\"id\":\"subchild1-child4\", \"parentId\":\"subchild1\", \"value\":\"subchild1-child4\", \"level\":\"3\"},"
-						+ "{\"id\":\"subchild1-child5\", \"parentId\":\"subchild1\", \"value\":\"subchild1-child5\", \"level\":\"3\"}]";//for test
-			
-		}
 		result.put("message", null);
-		result.put("data", res);
+		result.put("data", jsonstr);
 		return result;
 	}
 	
