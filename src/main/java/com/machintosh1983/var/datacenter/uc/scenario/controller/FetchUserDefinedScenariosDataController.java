@@ -104,7 +104,7 @@ public class FetchUserDefinedScenariosDataController extends BaseController {
 		String jsonstr = "[";
 		int point = 0;
 		for(Iterator<String> keys = res.keySet().iterator(); keys.hasNext();) {
-			if( offset == point ) {
+			if( point >= offset ) {
 				String key = keys.next();
 				String value = res.get(key);
 				jsonstr += "{\"id\":\""+key+"\",\"value\":\""+value+"\"},";
