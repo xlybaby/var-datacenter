@@ -1,6 +1,8 @@
 package com.machintosh1983.var.datacenter.research.controller;
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,5 +31,13 @@ public class BaseController {
 		u.setUserName("test001");
 		
 		return u;
+	}
+	
+	public Map<String, Object> response(int code, String message, Object data) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("retCode", code);
+		result.put("retMsg", message);
+		result.put("retData", data);
+		return result;
 	}
 }
